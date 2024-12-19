@@ -1,7 +1,6 @@
 
-from openai import OpenAI
 import streamlit as st
-import sqlite3
+
 
 
 note = '''
@@ -138,62 +137,6 @@ page = st.sidebar.selectbox(
     "MENU",
     ["😃AI챗봇", "📄약력", "과제 소개"]
 )
-# OpenAI API 키 직접 설정
-client = OpenAI(api_key="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")
-
-
-# 세션 상태 초기화
-def initialize_session_state():
-    """세션 상태 초기화"""
-    if "messages" not in st.session_state:
-        st.session_state.messages = []
-    if "user_input" not in st.session_state:
-        st.session_state.user_input = ""
-
-# 메시지 표시 함수
-def display_message(role, content):
-    """메시지 표시 함수"""
-    if role == "user":
-        st.write(f"😃 나: {content}")
-    else:
-        st.write(f"🗺️ AI: {content}")
-
-# 입력창 초기화 함수
-def clear_input():
-    """입력창 초기화 함수"""
-    st.session_state.user_input = ""
-
-# 메인 채팅 인터페이스
-chat_container = st.container()
-
-model = 'gpt-3.5-turbo'
-def get_chat_response(prompt, model="gpt-3.5-turbo"):
-    """
-    prompt를 기반으로 구도원이란 사람에 대해 설명하고 소개합니다. 
-    구도원이라는 사람의 휴먼 라이브러리 챗봇 역할을 합니다.
-    """
-    try:
-        prompt = f"""
-                구도원이란 사람의 유년 시절, 성인 시절 등 일생 및 인생, 일, 여가, 가족, 생활 등에 대해 물어본다면 {note}를 참고하여 답합니다. 대부분의 질문은 해당 문서를 참고하여 답하세요. 해당 글은 연도와 나이에 따라 소제목이 붙어 있습니다.
-                구도원이란 사람의 성격에 대해 물어본다면 {mbti}를 참고하여 답합니다.
-                '습니다'문체로 친절하고 자연스러운 한국어 답변을 하세요.
-                """
-        messages = [
-            {"role": "system", "content": "당신은 구도원이란 사람에 대해 설명하는 AI챗봇입니다. 친절한 한국어로 응답해 주세요."},
-            {"role": "user", "content": prompt}
-            ]
-        
-        response = client.chat.completions.create(
-            model=model,
-            messages=messages,
-            temperature=0.4,
-            max_tokens=1000
-        )
-        return response.choices[0].message.content.strip()
-    except Exception as e:
-        return f"Error: {str(e)}"
-
-
 
 if page == "😃AI챗봇":
     st.markdown(f"""
@@ -217,71 +160,7 @@ if page == "😃AI챗봇":
     """, unsafe_allow_html=True)
 
     def main1():
-            st.title("Human Book 구도원과 대화")
-            initialize_session_state()
-
-            st.markdown("</div>", unsafe_allow_html=True)
-            with st.container():
-                st.markdown(
-                    """
-                    <div style="border: 1px solid #FF4500; padding: 2px; border-radius: 15px; background-color: #FF4500;">
-                    """, 
-                    unsafe_allow_html=True
-                )
-                st.subheader("Human Library란?")
-                st.write("""
-                휴먼 라이브러리는 다양한 경험과 지식을 가진 사람을 책처럼 등록하여, 등록된 휴먼북(사람책)을 대출·열람하는 서비스를 제공하는 도서관입니다. 사람이 한 명, 한 명이 도서관의 도서가 됩니다. 구도원은 어떤 사람일까요? 어떤 삶을 살았을까요? Human Chatbot 구도원에게 질문해 보세요!
-                """)
-                st.markdown("</div>", unsafe_allow_html=True)
-    
-            # input form
-            with st.form(key="chat_form2", clear_on_submit=True):
-                user_input = st.text_input("Human Book 구도원 챗봇과 대화해 보세요: ", placeholder="그는 무슨 일을 해 왔고 어떤 비전을 갖고 있을까요?")
-                col1, col2 = st.columns([0.9, 0.1])
-                with col2:
-                    submit_button = st.form_submit_button("전송")
-                
-                if submit_button and user_input:
-
-                    st.markdown(
-                        f"""
-                        <div style="
-                            border: 1px solid #ccc; 
-                            border-radius: 10px; 
-                            padding: 10px; 
-                            background-color: #f9f9f9; 
-                            margin-top: 20px;
-                        ">
-                            😃: {user_input}
-                        </div>
-                        """,
-                        unsafe_allow_html=True
-                    )
-                    
-                    # 사용자 메시지 저장
-                    st.session_state.messages.append({"role": "user", "content": user_input})
-                    
-                    # AI 응답 받기
-                    with st.spinner("AI가 응답을 생성 중입니다..."):
-                        response = get_chat_response(user_input, model)
-                        
-                    # AI 응답 저장
-                    st.session_state.messages.append({"role": "assistant", "content": response})
-                    
-                    # 페이지 새로고침
-                    st.experimental_rerun()
-                    
-            with st.form(key="chat_display_form"):
-
-                st.subheader("📜 대화 기록")
-                chat_container = st.container()
-                with chat_container:
-                                for message in st.session_state.messages:
-                                    display_message(message["role"], message["content"])
-                st.form_submit_button(label="", disabled=True)
-
-
-
+                st.write()
 
 
 elif page == "📄약력":
