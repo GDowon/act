@@ -160,7 +160,35 @@ if page == "😃AI챗봇":
     """, unsafe_allow_html=True)
 
     def main1():
-                st.write()
+        st.markdown("</div>", unsafe_allow_html=True)
+        with st.container():
+            st.markdown(
+                """
+                <div style="border: 1px solid #FF4500; padding: 2px; border-radius: 15px; background-color: #FF4500;">
+                """, 
+                unsafe_allow_html=True
+            )
+            st.subheader("Human Library란?")
+            st.write("""
+             휴먼 라이브러리는 다양한 경험과 지식을 가진 사람을 책처럼 등록하여, 등록된 휴먼북(사람책)을 대출·열람하는 서비스를 제공하는 도서관입니다. 사람이 한 명, 한 명이 도서관의 도서가 되는 겁니다. 최근 구직자들 사이로 실무자와의 '커피챗'을 꼭 한 번은 해 보라는 조언이 돕니다. 그만큼 한 사람의 경험과 지식이 귀하고 중하다는 뜻입니다.
+            """)
+            st.markdown("</div>", unsafe_allow_html=True)
+
+        with st.container():
+            st.markdown(
+                """
+                <div style="border: 1px solid #FF4500; padding: 2px; border-radius: 15px; background-color: #FF4500;">
+                """, 
+                unsafe_allow_html=True
+            )
+            st.subheader("나의 인생 연출하기")
+            st.write("""
+            여태까지도 그랬고, 앞으로도 저의 인생은 도서관과 떨어지지 않을 것 같습니다. 그런 점에서 저의 인생 자체가 도서관이 되는 Human Library를 떠 올렸습니다. 제가 아주 나이를 먹고 도서관에서 Human Book이 되었다는 전제로 이번 과제를 작성하였습니다.
+             제가 60살쯤이 되면, 개인과 개인이 대면 약속을 잡는 Human Book보다는 웹페이지를 활용한 Human Book이 더 많고 자주 이용될 거 같다고 생각하여 이번 과제를 수행하였습니다.
+             챗봇에는 '약력' 페이지의 글과 저의 MBTI에 관한 내용, 일기의 일부 내용을 교육했습니다!
+             한 학기 동안 고생 많으셨습니다. 저도 즐거웠습니다.
+            """)
+            st.markdown("</div>", unsafe_allow_html=True)
 
 
 elif page == "📄약력":
@@ -361,67 +389,13 @@ elif page == "📄약력":
         """)
         st.markdown("</div>", unsafe_allow_html=True)
 
-elif page == "과제 소개":
-    st.markdown(f"""
-    <style>
-    .main-title {{
-        text-align: center;
-        font-size: 3rem;
-        color: #FF4500;
-    }}
-    .sub-title {{
-        text-align: center;
-        font-size: 1.5rem;
-        color: #333333;
-    }}
-    .sidebar .sidebar-content {{
-        background-color: #FFEDD5;
-    }}
-    </style>
-    <h1 class="main-title">Human Library</h1>
-    <p class="sub-title">2054년 기록</p>
-    """, unsafe_allow_html=True)
-
-    def main3():
-        st.markdown("</div>", unsafe_allow_html=True)
-        with st.container():
-            st.markdown(
-                """
-                <div style="border: 1px solid #FF4500; padding: 2px; border-radius: 15px; background-color: #FF4500;">
-                """, 
-                unsafe_allow_html=True
-            )
-            st.subheader("Human Library란?")
-            st.write("""
-             휴먼 라이브러리는 다양한 경험과 지식을 가진 사람을 책처럼 등록하여, 등록된 휴먼북(사람책)을 대출·열람하는 서비스를 제공하는 도서관입니다. 사람이 한 명, 한 명이 도서관의 도서가 되는 겁니다. 최근 구직자들 사이로 실무자와의 '커피챗'을 꼭 한 번은 해 보라는 조언이 돕니다. 그만큼 한 사람의 경험과 지식이 귀하고 중하다는 뜻입니다.
-            """)
-            st.markdown("</div>", unsafe_allow_html=True)
-
-        with st.container():
-            st.markdown(
-                """
-                <div style="border: 1px solid #FF4500; padding: 2px; border-radius: 15px; background-color: #FF4500;">
-                """, 
-                unsafe_allow_html=True
-            )
-            st.subheader("나의 인생 연출하기")
-            st.write("""
-            여태까지도 그랬고, 앞으로도 저의 인생은 도서관과 떨어지지 않을 것 같습니다. 그런 점에서 저의 인생 자체가 도서관이 되는 Human Library를 떠 올렸습니다. 제가 아주 나이를 먹고 도서관에서 Human Book이 되었다는 전제로 이번 과제를 작성하였습니다. 이 챗봇은 제가 입력한 내용을 토대로 ChatGPT가 저에 대한 답변을 작성합니다.
-             제가 60살쯤이 되면, 개인과 개인이 대면 약속을 잡는 Human Book보다는 AI를 활용한 Human Book이 더 많고 자주 이용될 거 같다고 생각하여 이번 과제를 수행하였습니다. 챗봇 부분을 제외하고 AI를 사용한 부분은 일절 없습니다! 만약, AI를 활용한 챗봇 형태가 부적절하다면 '약력' 페이지에 작성해 둔 글을 참고하여 과제 채점해 주시기를 바랍니다.
-             챗봇에는 '약력' 페이지의 글과 저의 MBTI에 관한 내용, 일기의 일부 내용을 교육했습니다!
-             참고로 질문을 너무 많이 하지는 말아주세요. 질문을 할 때마다 ChatGPT 사용 요금이 나갑니다. 이번 학기 관련 내용으로 과제를 하고 충전한 돈이 조금 남아있긴 합니다.
-             한 학기 동안 고생 많으셨습니다. 저도 즐거웠습니다.
-            """)
-            st.markdown("</div>", unsafe_allow_html=True)
          
         
 
 
 
 if __name__ == "__main__":
-    if page == "😃AI챗봇":
+    if page == "과제 소개":
         main1()
     elif page == "📄약력":
         main2()
-    elif page == "과제 소개":
-        main3()
