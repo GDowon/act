@@ -1,8 +1,6 @@
-pip openai
 
 import streamlit as st
-import openai
-import sqlite3
+
 
 
 note = '''
