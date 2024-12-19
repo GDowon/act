@@ -135,10 +135,10 @@ st.markdown(
 
 page = st.sidebar.selectbox(
     "MENU",
-    ["😃AI챗봇", "📄약력", "과제 소개"]
+    [ "📄약력", "과제 소개"]
 )
 
-if page == "😃AI챗봇":
+if page == "과제 소개":
     st.markdown(f"""
     <style>
     .main-title {{
