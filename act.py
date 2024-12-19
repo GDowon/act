@@ -1,3 +1,6 @@
+pip install openai
+pip install sqlite3
+
 import streamlit as st
 import openai
 import sqlite3
